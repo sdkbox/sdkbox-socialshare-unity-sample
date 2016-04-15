@@ -316,6 +316,10 @@ namespace Sdkbox {
 			#if !UNITY_EDITOR
 			#if UNITY_ANDROID
 			AndroidJavaObject activity = SocialShare._player.GetStatic<AndroidJavaObject>("currentActivity");
+			if (null == activity) {
+				Debug.Log ("share activity is null");
+				return;
+			}
 			activity.Call("runOnUiThread", new AndroidJavaRunnable(() => {
 				sdkbox_socialshare_share(info.ToString ());
 			}));
